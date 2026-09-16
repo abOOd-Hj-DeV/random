@@ -96,7 +96,11 @@ export function ReservationRows({ bookings }: { bookings: Booking[] }) {
             <td className="number">
               {money(b.total)}
               <small>
-                {b.paid >= b.total ? "Paid" : `${money(b.total - b.paid)} due`}
+                {b.status === "cancelled"
+                  ? "Nothing due"
+                  : b.paid >= b.total
+                    ? "Paid"
+                    : `${money(b.total - b.paid)} due`}
               </small>
             </td>
             <td>
